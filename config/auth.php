@@ -46,6 +46,16 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+
+        'petugas' => [
+            'driver' => 'session',
+            'provider' => 'petugas_shelvia',
+        ],
+        
+        'masyarakat' => [
+            'driver' => 'session',
+            'provider' => 'masyarakat_shelvia',
+        ],
     ],
 
     /*
@@ -69,6 +79,16 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
+        ],
+
+        'petugas_shelvia' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Petugas::class,
+        ],
+
+        'masyarakat_shelvia' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Masyarakat::class,
         ],
 
         // 'users' => [

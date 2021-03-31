@@ -21,6 +21,7 @@ class CreatePetugasShelviaTable extends Migration
             $table->string('telp', 13);
             $table->string('email');
             $table->enum('level', ['admin', 'petugas']);
+            $table->string('foto');
             $table->timestamps();
         });
     }

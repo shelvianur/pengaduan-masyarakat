@@ -21,6 +21,7 @@ class CreateMasyarakatShelviaTable extends Migration
             $table->string('password');
             $table->string('telp');
             $table->string('email');
+            $table->string('foto');
             $table->timestamps();
         });
     }

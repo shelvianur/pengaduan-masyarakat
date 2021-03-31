@@ -17,12 +17,12 @@ class CreatePengaduanShelviaTable extends Migration
             $table->bigIncrements('id_pengaduan');
             $table->bigInteger('masyarakat_id')->unsigned();
             $table->dateTime('tgl_pengaduan');
+            $table->text('judul_laporan');
             $table->text('isi_laporan');
-            $table->string('foto');
             $table->enum('status', ['0', 'proses', 'selesai']);
             $table->foreign('masyarakat_id')
                     ->references('id_masyarakat')->on('masyarakat_shelvia')
-                    ->onDelete('cascade');
+                    ->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
