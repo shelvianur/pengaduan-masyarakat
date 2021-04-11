@@ -15,6 +15,20 @@ class MasyarakatController extends Controller
         return view('admin.masyarakat.index', ['masyarakat' => $masyarakat, 'no' => $no]);
     }
 
+    public function createadmin(Request $request)
+    {
+        Masyarakat::create([
+            'nik' => $request->nik,
+            'nama' => $request->nama,
+            'username' => $request->username,
+            'password' => bcrypt($request->password),
+            'telp' => $request->telp,
+            'email' => $request->email
+        ]);
+
+        return redirect('/admin/masyarakat');
+    }
+
     public function create(Request $request)
     {
         return view('login.registrasi');

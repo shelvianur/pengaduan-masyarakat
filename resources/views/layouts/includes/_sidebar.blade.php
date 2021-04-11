@@ -37,18 +37,6 @@
                         <i class="ni ni-single-02"></i>
                         <span>My profile</span>
                     </a>
-                    <a href="{{asset('adminn/examples/profile.html')}}" class="dropdown-item">
-                        <i class="ni ni-settings-gear-65"></i>
-                        <span>Settings</span>
-                    </a>
-                    <a href="{{asset('adminn/examples/profile.html')}}" class="dropdown-item">
-                        <i class="ni ni-calendar-grid-58"></i>
-                        <span>Activity</span>
-                    </a>
-                    <a href="{{asset('adminn/examples/profile.html')}}" class="dropdown-item">
-                        <i class="ni ni-support-16"></i>
-                        <span>Support</span>
-                    </a>
                     <div class="dropdown-divider"></div>
                     <a href="#!" class="dropdown-item">
                         <i class="ni ni-user-run"></i>
@@ -90,14 +78,14 @@
             <ul class="navbar-nav">
                 @if (isset(Auth::guard('petugas')->user()->level))
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link {{ (request()->routeIs('admin.index')) ? 'active' : '' }}" href="{{route('admin.index')}}">
                         <i class="ni ni-tv-2 text-primary"></i> Dashboard
                     </a>
                 </li>
                     @if (Auth::guard('petugas')->user()->level == 'admin')
                 <li class="nav-item">
                     <a class="nav-link {{ (request()->routeIs('admin.masyarakat.index')) ? 'active' : '' }}" href="{{route('admin.masyarakat.index')}}">
-                        <i class="ni ni-planet text-purple"></i> Masyarakat
+                        <i class="fas fa-users text-purple"></i> Masyarakat
                     </a>
                 </li>
                 <li class="nav-item">
@@ -106,14 +94,14 @@
                     </a>
                 </li>
                     @endif
+                <!-- <li class="nav-item">
+                    <a class="nav-link {{ (request()->routeIs('admin.tanggapan.index')) ? 'active' : '' }}" href="{{route('admin.tanggapan.index')}}">
+                        <i class="ni ni-archive-2 text-orange"></i> Tanggapan
+                    </a>
+                </li>  -->
                 <li class="nav-item">
                     <a class="nav-link {{ (request()->routeIs('admin.pengaduan.index')) ? 'active' : '' }}" href="{{route('admin.pengaduan.index')}}">
                         <i class="ni ni-notification-70 text-yellow"></i> Pengaduan
-                    </a>
-                </li> 
-                <li class="nav-item">
-                    <a class="nav-link {{ (request()->routeIs('admin.tanggapan.index')) ? 'active' : '' }}" href="{{route('admin.tanggapan.index')}}">
-                        <i class="ni ni-archive-2 text-orange"></i> Tanggapan
                     </a>
                 </li> 
                 @endif
@@ -125,28 +113,24 @@
                 </li>
                 @endif
             </ul>
-            <!-- Divider -->
             <hr class="my-3">
             <!-- Heading -->
-            <h6 class="navbar-heading text-muted">Documentation</h6>
+            @if (Auth::guard('petugas')->user()->level == 'admin')
+            <h6 class="navbar-heading text-muted">Dokumentasi</h6>
             <!-- Navigation -->
             <ul class="navbar-nav mb-md-3">
                 <li class="nav-item">
-                    <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html">
-                        <i class="ni ni-spaceship"></i> Getting started
+                    <a class="nav-link {{ (request()->routeIs('admin.laporan.tanggal')) ? 'active' : '' }}" href="{{route('admin.laporan.tanggal')}}">
+                        <i class="ni ni-ui-04"></i> Laporan per Tanggal
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/foundation/colors.html">
-                        <i class="ni ni-palette"></i> Foundation
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/components/alerts.html">
-                        <i class="ni ni-ui-04"></i> Components
+                    <a class="nav-link {{ (request()->routeIs('admin.laporan.status')) ? 'active' : '' }}" href="{{route('admin.laporan.status')}}">
+                    <i class="ni ni-palette"></i> Laporan per Status
                     </a>
                 </li>
             </ul>
+            @endif
         </div>
     </div>
 </nav>

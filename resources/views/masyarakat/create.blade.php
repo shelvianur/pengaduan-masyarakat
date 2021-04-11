@@ -1,64 +1,103 @@
-@extends('layouts.master')
-@section('title')
-Pengaduan | Pengaduan Masyarakat
-@endsection
+@extends('user-layouts.master')
 
-@section('content2')
-<div class="col">
-    <div class="card shadow">
-        <div class="card-header border-0">
-            <h3 class="mb-0">Laporan !</h3><br>
-            <form action="{{route('user.pengaduan.store')}}" method="post" enctype="multipart/form-data">
-                @csrf
+@section('content1')
+<!-- <section id="contact" class="contact">
+    <div class="container">
+        <div class="section-title" data-aos="fade-up">
+            <p>Tulis Pengaduan Masyarakat</p>
+        </div>
+        <div class="row">
+            <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200" style="margin: auto;">
+            <form action="{{route('user.pengaduan.store')}}" method="post" role="form" class="php-email-form">
                 <div class="form-group">
                     <label for="jl">Judul Laporan</label>
-                    <input type="text" class="form-control  form-control-muted" id="jl" placeholder="Isi judul laporan*" name="judul" required>
+                    <input type="text" name="judul" class="form-control" id="jl" placeholder="Masukkan Judul Laporan*" required/>
+                    <div class="validate"></div>
                 </div>
                 <div class="form-group">
                     <label for="tgl">Tanggal Kejadian</label>
-                    <input type="datetime-local" class="form-control  form-control-muted" id="tgl" placeholder="Pilih Tanggal Kejadian*" name="tgl" required>
+                    <input type="datetime-local" class="form-control" name="tgl" id="tgl" required/>
+                    <div class="validate"></div>
                 </div>
                 <div class="form-group">
                     <label for="il">Isi Laporan</label>
-                    <textarea type="text" class="form-control  form-control-muted" id="il" placeholder="Isi Laporan*" rows="6" name="isi_laporan" required></textarea>
+                    <textarea class="form-control" id="il" name="isi_laporan" rows="10" data-rule="required" data-msg="Please write something for us" required></textarea>
+                    <div class="validate"></div>
                 </div>
-                <!-- <div class="form-group">
+                <div class="form-group">
                     <label for="ul">Upload Lampiran</label>
-                    <input type="file" class="form-control  form-control-muted" id="ul" placeholder="Pilih Tanggal Kejadian*" name="foto[]" required multiple>
-                </div> -->
-                <div class="input-group hdtuto control-group lst increment" >
-                    <input type="file" name="imagename[]" class="myfrm form-control">
-                    <div class="input-group-btn"> 
-                        <button class="btn btn-success" type="button"><i class="fldemo glyphicon glyphicon-plus"></i>Add</button>
+                    <div class="input-field mt-1">
+                        <div class="input-images-1" style="padding-top: .5rem;"></div>
                     </div>
                 </div>
-                <div class="clone hide">
-                    <div class="hdtuto control-group lst input-group" style="margin-top:10px">
-                        <input type="file" name="imagename[]" class="myfrm form-control" multiple="
-                        multiple">
-                        <div class="input-group-btn"> 
-                        <button class="btn btn-danger" type="button"><i class="fldemo glyphicon glyphicon-remove"></i> Remove</button>
-                        </div>
-                    </div>
+                <div class="mb-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your message has been sent. Thank you!</div>
                 </div>
-                
-                    <button type="submit" class="btn btn-success" style="margin-top:10px">Submit</button>
+                <div class="text-center"><button type="submit">Kirim Pengaduan</button></div>
             </form>
+            </div>
+
         </div>
     </div>
-</div>
+</section> -->
+
+<section class="contact">
+    <div class="container">
+        <div class="section-title" data-aos="fade-up">
+            <p>Tulis Pengaduan Masyarakat</p>
+        </div>
+        @if($message = Session::get('gagal'))
+            <div class="alert alert-danger" role="alert">
+                {{$message}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+        <div class="row">
+            <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200" style="margin: auto;">
+                <form action="{{route('user.pengaduan.store')}}" method="post" enctype="multipart/form-data" role="form" class="php-form">
+                    @csrf
+                    <div class="form-group">
+                        <label for="jl">Judul Laporan</label>
+                        <input type="text" class="form-control  form-control-muted" id="jl" placeholder="Isi judul laporan*" name="judul" required>
+                        <div class="validate"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tgl">Tanggal Kejadian</label>
+                        <input type="datetime-local" class="form-control form-control-muted" id="tgl" placeholder="Pilih Tanggal Kejadian*" name="tgl" required>
+                        <div class="validate"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="il">Isi Laporan</label>
+                        <textarea type="text" class="form-control  form-control-muted" id="il" placeholder="Isi Laporan*" rows="6" name="isi_laporan" required></textarea>
+                        <div class="validate"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="ul">Upload Lampiran</label>
+                        <div class="input-field mt-1">
+                            <div class="input-images-1" style="padding-top: .5rem;"></div>
+                        </div>
+                        <div class="validate"></div>
+                    </div>
+                    <div class="text-center" >
+                        <button type="submit">Kirim Pengaduan</button>
+                    </div>
+                </form>
+            </div>
+        </div> 
+    </div>
+</section>
 
 
 
 <script type="text/javascript">
-    $(document).ready(function() {
-      $(".btn-success").click(function(){ 
-          var lsthmtl = $(".clone").html();
-          $(".increment").after(lsthmtl);
-      });
-      $("body").on("click",".btn-danger",function(){ 
-          $(this).parents(".hdtuto control-group lst").remove();
-      });
+    $(function () {
+
+        $('.input-images-1').imageUploader();
+
     });
 </script>
 @endsection

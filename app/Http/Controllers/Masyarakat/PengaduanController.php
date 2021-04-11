@@ -6,15 +6,60 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Pengaduan;
 use App\Models\Foto;
+use App\Models\Tanggapan;
 use Auth;
+use Session;
 
 class PengaduanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function pengaduan()
+    {
+        $pengaduan = Pengaduan::with('foto')
+                                ->where('masyarakat_id', Auth::user()->id_masyarakat)
+                                ->orderBy('tgl_pengaduan', 'DESC')
+                                ->get();
+        
+        return view('masyarakat.pengaduan-saya', compact('pengaduan'));
+    }
+    
+    public function pengaduanid($id)
+    {
+        $pengaduan = Pengaduan::join('masyarakat_shelvia', 'masyarakat_shelvia.id_masyarakat', 'pengaduan_shelvia.masyarakat_id')
+                                ->select('pengaduan_shelvia.*', 'masyarakat_shelvia.*')
+                                ->find($id);
+        $tanggapan = Tanggapan::orderBy('tgl_tanggapan', 'ASC')->where('pengaduan_id', $id)->get();
+        $image = Foto::where('pengaduan_id', $id)->get();
+        return view('masyarakat.pengaduan-id', ['p' => $pengaduan, 'image' => $image, 'tanggapan' => $tanggapan, 'id'=> $id]);
+    }
+
+    public function kirim($id, Request $request)
+    {
+        date_default_timezone_set("Asia/Jakarta");
+        $tgl = date("Y-m-d h:i:s");
+
+        Tanggapan::create([
+            'pengaduan_id' => $id,
+            'tgl_tanggapan' => $tgl,
+            'tanggapan' => $request->tanggapan
+        ]);
+
+        return redirect("/user/pengaduan-saya/$id");
+    }
+
+    public function getTanggapan(Request $request, $id)
+    {
+        $pengaduan = Pengaduan::join('masyarakat_shelvia', 'masyarakat_shelvia.id_masyarakat', 'pengaduan_shelvia.masyarakat_id')
+                                ->select('pengaduan_shelvia.*', 'masyarakat_shelvia.*')
+                                ->find($id);
+        $tanggapan = Tanggapan::orderBy('tgl_tanggapan', 'ASC')->where('pengaduan_id', $id)->get();
+
+        return response()->json([
+            "tanggapan"  => $tanggapan,
+            "pengaduan" => $pengaduan,
+            "status"  => 200,
+        ]);
+    }
+
     public function index()
     {
         $pengaduan = Pengaduan::all();
@@ -22,40 +67,29 @@ class PengaduanController extends Controller
         return view('masyarakat.index', ['pengaduan' => $pengaduan, 'no' => $no]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */ 
     public function create()
     { 
         return view('masyarakat.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
-    {
+    {   
+        $this->validate($request, [
+            'images' => 'required',
+            'images.*' => 'mimes:jpg,png,jpeg,gif'
+        ]);
+        $tgl = date('Y-m-d H:i:s', strtotime($request->tgl));
         $pengaduan = Pengaduan::create([
                         'masyarakat_id' => Auth::user()->id_masyarakat,
-                        'tgl_pengaduan' => $request->tgl,
+                        'tgl_pengaduan' => $tgl,
                         'judul_laporan' => $request->judul,
                         'isi_laporan' => $request->isi_laporan,
                         'status' => '0'
                     ]);
 
-        $this->validate($request, [
-            'imagename' => 'required',
-            'imagename.*' => 'mimes:jpg,png,jpeg,gif'
-        ]);
-
-        if($request->hasfile('imagename'))
+        if($request->hasfile('images'))
         {
-            foreach($request->file('imagename') as $file)
+            foreach($request->file('images') as $file)
             {
                 $name = $file->getClientOriginalName();
                 $file->move(public_path().'/images/', $name);  
@@ -67,52 +101,40 @@ class PengaduanController extends Controller
             }
         }
 
-        return redirect('user');
+        // return redirect('/user/pengaduan');
+
+        if ($pengaduan) {
+            return redirect('/user/pengaduan');
+        } else {
+            Session::flash('gagal', 'Tidak boleh ada input yang kosong');
+            return redirect('/user/create');
+        }
+
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $pengaduan = Pengaduan::find($id);
+        return view('masyarakat.edit', ['pengaduan' => $pengaduan]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        Pengaduan::find($id)->update([
+            'masyarakat_id' => Auth::user()->id_masyarakat,
+            'tgl_pengaduan' => $request->tgl,
+            'judul_laporan' => $request->judul,
+            'isi_laporan' => $request->isi_laporan
+        ]);
+
+        return redirect('user');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function hapus($id)
     {
-        //
+        $pengaduan = Pengaduan::find($id);
+        $pengaduan->delete();
+        return redirect('user/pengaduan');
     }
 }

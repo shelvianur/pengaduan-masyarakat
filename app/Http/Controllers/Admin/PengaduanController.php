@@ -8,21 +8,63 @@ use App\Models\Pengaduan;
 use App\Models\Tanggapan;
 use App\Models\Foto;
 use Auth;
+use DataTables;
+use PDF;
 
 class PengaduanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = Pengaduan::join('masyarakat_shelvia', 'masyarakat_shelvia.id_masyarakat', 'pengaduan_shelvia.masyarakat_id')
+                            ->select('pengaduan_shelvia.*', 'masyarakat_shelvia.nama', 'masyarakat_shelvia.nik')
+                            ->get();
+            return DataTables::of($data)
+                    ->addIndexColumn()
+                    ->editColumn('status', function ($row) {
+
+                        if ($row->status == '0') {
+                           $status = '<span class="badge badge-pill badge-danger">Menunggu Konfirmasi</span>';
+                        }elseif ($row->status == 'proses') {
+                            $status = '<span class="badge badge-pill badge-warning">Sedang Di Proses</span>';
+                        }else {
+                            $status = '<span class="badge badge-pill badge-success">Selesai</span>';
+                        }
+
+                        return $status;
+                    })
+                    ->rawColumns(['status'])
+                    ->make(true);
+        }
+
+        $pengaduan = Pengaduan::all();
+
+        return view('admin.pengaduan.index', ['pengaduan' => $pengaduan]);
+    }
+
+    public function user($id)
     {
         $pengaduan = Pengaduan::join('masyarakat_shelvia', 'masyarakat_shelvia.id_masyarakat', 'pengaduan_shelvia.masyarakat_id')
-                                ->select('pengaduan_shelvia.*', 'masyarakat_shelvia.nama')
-                                ->get();
-        $no = 1;
-        return view('admin.pengaduan.index', ['pengaduan' => $pengaduan, 'no' => $no]);
+                                ->select('pengaduan_shelvia.*', 'masyarakat_shelvia.*')
+                                ->find($id);
+        $tanggapan = Tanggapan::orderBy('tgl_tanggapan', 'ASC')->where('pengaduan_id', $id)->get();
+        $image = Foto::where('pengaduan_id', $id)->get();
+        return view('admin.pengaduan.pengaduan', ['p' => $pengaduan, 'image' => $image, 'tanggapan' => $tanggapan, 'id'=> $id]);
+    }
+
+    public function kirim($id, Request $request)
+    {
+        date_default_timezone_set("Asia/Jakarta");
+        $tgl = date("Y-m-d h:i:s");
+
+        Tanggapan::create([
+            'pengaduan_id' => $id,
+            'petugas_id' => Auth::user()->id_petugas,
+            'tgl_tanggapan' => $tgl,
+            'tanggapan' => $request->tanggapan
+        ]);
+
+        return redirect("/admin/pengaduan/user/$id");
     }
 
     public function proses($id)
@@ -41,7 +83,9 @@ class PengaduanController extends Controller
             'tanggapan' => 'Laporan Anda sedang diverifikasi dan diteruskan kepada instansi berwenang'
         ]);
 
-        return redirect('admin/pengaduan');
+        return response()->json([
+            "status"  => 200,
+        ]);
     }
 
     public function selesai($id)
@@ -49,7 +93,10 @@ class PengaduanController extends Controller
         Pengaduan::find($id)->update([
             'status' => 'selesai'
         ]);
-        return redirect('admin/pengaduan');
+        
+        return response()->json([
+            "status"  => 200,
+        ]);
     }
 
     public function tidakvalid($id)
@@ -65,13 +112,32 @@ class PengaduanController extends Controller
             'tanggapan' => 'Mohon maaf laporan Anda tidak valid'
         ]);
 
-        return redirect('admin/pengaduan');
+        return response()->json([
+            "status"  => 200,
+        ]);
     }
 
-    public function user($id)
+    public function getTanggapan(Request $request, $id)
     {
-        $pengaduan = Pengaduan::find($id);
-        $image = Foto::where('pengaduan_id', $id)->get();
-        return view('admin.pengaduan.pengaduan', ['p' => $pengaduan, 'image' => $image]);
+        $pengaduan = Pengaduan::join('masyarakat_shelvia', 'masyarakat_shelvia.id_masyarakat', 'pengaduan_shelvia.masyarakat_id')
+                                ->select('pengaduan_shelvia.*', 'masyarakat_shelvia.*')
+                                ->find($id);
+        $tanggapan = Tanggapan::orderBy('tgl_tanggapan', 'ASC')->where('pengaduan_id', $id)->get();
+
+        return response()->json([
+            "tanggapan"  => $tanggapan,
+            "pengaduan" => $pengaduan,
+            "status"  => 200,
+        ]);
+    }
+
+    public function cetak_pdf($id)
+    {
+        $pengaduan = Pengaduan::join('masyarakat_shelvia', 'masyarakat_shelvia.id_masyarakat', 'pengaduan_shelvia.masyarakat_id')
+                                ->select('pengaduan_shelvia.*', 'masyarakat_shelvia.*')
+                                ->find($id);
+
+        $pdf = PDF::loadview('admin.pengaduan.cetak', compact('pengaduan'))->setPaper('a4');
+        return $pdf->stream();
     }
 }

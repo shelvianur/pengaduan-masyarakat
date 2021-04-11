@@ -33,17 +33,17 @@ Petugas Admin | Pengaduan petugas
                                                 @csrf
                                                 <div class="form-group mb-3">
                                                     <div class="input-group input-group-merge input-group-alternative">
-                                                        <input class="form-control" name="nama_petugas" placeholder="Masukkan Nama" type="text">
+                                                        <input class="form-control" name="nama_petugas" placeholder="Masukkan Nama" type="text" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group mb-3">
                                                     <div class="input-group input-group-merge input-group-alternative">
-                                                        <input class="form-control" name="telp" placeholder="Masukkan Nomor Telepon" type="number">
+                                                        <input class="form-control" name="telp" placeholder="Masukkan Nomor Telepon" type="number" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group mb-3">
                                                     <div class="input-group input-group-merge input-group-alternative">
-                                                        <input class="form-control" name="username" placeholder="Masukkan Nama Pengguna" type="text">
+                                                        <input class="form-control" name="username" placeholder="Masukkan Nama Pengguna" type="text" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group mb-3">
@@ -51,7 +51,7 @@ Petugas Admin | Pengaduan petugas
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                                                         </div>
-                                                        <input class="form-control" name="email" placeholder="Masukkan Email" type="email">
+                                                        <input class="form-control" name="email" placeholder="Masukkan Email" type="email" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -59,7 +59,7 @@ Petugas Admin | Pengaduan petugas
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                                                         </div>
-                                                        <input class="form-control" name="password" placeholder="Masukkan Password" type="password">
+                                                        <input class="form-control" name="password" placeholder="Masukkan Password" type="password" required>
                                                     </div>
                                                 </div>
                                                 <div class="text-center">

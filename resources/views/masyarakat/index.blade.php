@@ -4,11 +4,6 @@ Pengaduan | Pengaduan Masyarakat
 @endsection
 
 @section('content2')
-<!-- <button class="btn btn-icon btn-primary" type="button">
-	<span class="btn-inner--icon"><i class="ni ni-atom"></i></span>
-</button> -->
-
-
 <div class="col">
     <div class="card shadow">
         <div class="table-responsive">
@@ -50,15 +45,18 @@ Pengaduan | Pengaduan Masyarakat
                         <td>{{$p->tgl_pengaduan}}</td>
                         <td>{{$p->status}}</td>
                         <td class="text-right">
+                            @if ($p->status == '0')
                             <div class="dropdown">
                                 <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-ellipsis-v"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                    <a class="dropdown-item" href="#">Edit</a>
-                                    <a class="dropdown-item" href="#" onclick="return confirm('Apakah adan yakin akan menghapus dari data petugas ?')">Hapus</a>
+                                    <a class="dropdown-item" href="{{route('user.pengaduan.edit', [$p->id_pengaduan])}}">Edit</a>
+                                    <a class="dropdown-item" href="{{route('user.pengaduan.delete', [$p->id_pengaduan])}}" onclick="return confirm('Apakah adan yakin akan menghapus dari data petugas ?')">Hapus</a>
                                 </div>
                             </div>
+                            @else
+                            @endif
                         </td>
                     </tr>
                     @endforeach
@@ -91,5 +89,5 @@ Pengaduan | Pengaduan Masyarakat
             </ul>
         </nav>
     </div>
-</div> -->
+</div>
 @endsection

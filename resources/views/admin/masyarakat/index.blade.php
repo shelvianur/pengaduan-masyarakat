@@ -27,26 +27,26 @@ Masyarakat Admin | Pengaduan Masyarakat
                                         <div class="text-center text-muted mb-4">
                                             <strong>Tambah Data Masyarakat</strong>
                                         </div>
-                                        <form method="post" action="{{route('admin.masyarakat.create')}}">
+                                        <form method="post" action="{{route('admin.masyarakat.createadmin')}}">
                                             @csrf
                                             <div class="form-group mb-3">
                                                 <div class="input-group input-group-merge input-group-alternative">
-                                                    <input class="form-control" name="nik" placeholder="Masukkan NIK" type="number">
+                                                    <input class="form-control" name="nik" placeholder="Masukkan NIK" type="number" required>
                                                 </div>
                                             </div>
                                             <div class="form-group mb-3">
                                                 <div class="input-group input-group-merge input-group-alternative">
-                                                    <input class="form-control" name="nama" placeholder="Masukkan Nama" type="text">
+                                                    <input class="form-control" name="nama" placeholder="Masukkan Nama" type="text" required>
                                                 </div>
                                             </div>
                                             <div class="form-group mb-3">
                                                 <div class="input-group input-group-merge input-group-alternative">
-                                                    <input class="form-control" name="telp" placeholder="Masukkan Nomor Telepon" type="number">
+                                                    <input class="form-control" name="telp" placeholder="Masukkan Nomor Telepon" type="number" required>
                                                 </div>
                                             </div>
                                             <div class="form-group mb-3">
                                                 <div class="input-group input-group-merge input-group-alternative">
-                                                    <input class="form-control" name="username" placeholder="Masukkan Username" type="text">
+                                                    <input class="form-control" name="username" placeholder="Masukkan Username" type="text" required>
                                                 </div>
                                             </div>
                                             <div class="form-group mb-3">
@@ -54,7 +54,7 @@ Masyarakat Admin | Pengaduan Masyarakat
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                                                     </div>
-                                                    <input class="form-control" name="email" placeholder="Masukkan Email" type="email">
+                                                    <input class="form-control" name="email" placeholder="Masukkan Email" type="email" required>
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -62,7 +62,7 @@ Masyarakat Admin | Pengaduan Masyarakat
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                                                     </div>
-                                                    <input class="form-control" name="password" placeholder="Masukkan Password" type="password">
+                                                    <input class="form-control" name="password" placeholder="Masukkan Password" type="password" required>
                                                 </div>
                                             </div>
                                             <div class="text-center">
@@ -119,7 +119,7 @@ Masyarakat Admin | Pengaduan Masyarakat
             </table>
         </div>
     </div>
-    <div class="card-footer py-4">
+    <!-- <div class="card-footer py-4">
         <nav aria-label="...">
             <ul class="pagination justify-content-end mb-0">
                 <li class="page-item disabled">
@@ -143,6 +143,6 @@ Masyarakat Admin | Pengaduan Masyarakat
                 </li>
             </ul>
         </nav>
-    </div>
+    </div> -->
 </div>
 @endsection

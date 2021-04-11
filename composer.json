@@ -9,10 +9,12 @@
     "license": "MIT",
     "require": {
         "php": "^7.2.5|^8.0",
+        "barryvdh/laravel-dompdf": "^0.9.0",
         "fideloper/proxy": "^4.4",
         "laravel/framework": "^6.20",
         "laravel/tinker": "^2.5",
-        "laravolt/semantic-form": "^4.0"
+        "laravolt/semantic-form": "^4.0",
+        "yajra/laravel-datatables-oracle": "^9.17"
     },
     "require-dev": {
         "facade/ignition": "^1.16.4",

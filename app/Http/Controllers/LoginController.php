@@ -7,6 +7,7 @@ use Illuminate\Routing\Controller as BaseController;
 use App\Models\Petugas;
 use App\Models\Masyarakat;
 use Illuminate\Support\Facades\Auth;
+use Redirect;
 
 class LoginController extends Controller
 {
@@ -35,8 +36,13 @@ class LoginController extends Controller
         if (Auth::guard('petugas')->attempt(['email' => $request->email, 'password' => $request->password])) {
             return redirect()->intended('/admin');
         } else if (Auth::guard('masyarakat')->attempt(['email' => $request->email, 'password' => $request->password])) {
-            return redirect()->intended('/user');
+            return redirect()->intended('/home');
         }
+        
+        return Redirect::back()->withErrors([
+            'email' => 'Username/Password Salah',
+        ]);
+
     }
 
     public function logout()

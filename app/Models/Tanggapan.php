@@ -10,6 +10,8 @@ class Tanggapan extends Model
 
     protected $primaryKey = 'id_tanggapan';
 
+    protected $dates = ['tgl_tanggapan'];
+
     protected $fillable = [
         'pengaduan_id',
         'petugas_id',

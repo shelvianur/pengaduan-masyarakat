@@ -16,7 +16,7 @@ class CreateTanggapanShelviaTable extends Migration
         Schema::create('tanggapan_shelvia', function (Blueprint $table) {
              $table->bigIncrements('id_tanggapan');
             $table->bigInteger('pengaduan_id')->unsigned();
-            $table->bigInteger('petugas_id')->unsigned();
+            $table->bigInteger('petugas_id')->nullable()->unsigned();
             $table->dateTime('tgl_tanggapan');
             $table->text('tanggapan');
             $table->foreign('pengaduan_id')

@@ -8,18 +8,31 @@
     <meta name="author" content="Creative Tim">
     <title>@yield('title')</title>
     <!-- Favicon -->
-    <link href="{{asset('adminn/assets/img/brand/favicon.png')}}" rel="icon" type="image/png">
+    <link href="{{asset('adminn/assets/img/brand/OriPutih.png')}}" rel="icon" type="image/png">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
     <!-- Icons -->
     <link href="{{asset('adminn/assets/vendor/nucleo/css/nucleo.css')}}" rel="stylesheet">
     <link href="{{asset('adminn/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
+    <link href="{{asset('adminn/assets/vendor/fontawesome/css/all.min.css')}}" rel="stylesheet">
     <!-- Argon CSS -->
     <link type="text/css" href="{{asset('adminn/assets/css/argon.css?v=1.0.0')}}" rel="stylesheet">
-    <!-- file input -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.5/css/fileinput.min.css" integrity="sha512-A/XiYKl0I56Nxg43kogQlAnLUbGRVGcT3J2Ni9b73+blF89rmMJ6qL9iHhPR/vDOsjcylhEoiQfzHzGHS+K/lQ==" crossorigin="anonymous" />
+
+    <!-- baru -->
+    <link rel="stylesheet" href="{{asset('adminn/dist/image-uploader.min.css')}}"> 
+    <link rel="stylesheet" href="{{asset('adminn/dist/baru.css')}}"> 
     
-    <script src="{{asset('adminn/assets/js/jquery.min.js')}}"></script>
+    <script src="{{asset('adminn/assets/vendor/jquery/dist/jquery.min.js')}}"></script>
+    
+    <!-- data table -->
+    <link rel="stylesheet" href="{{ asset('adminn/assets/vendor/datatables/dataTables.bootstrap4.min.css')}}">
+    <script src="{{asset('adminn/assets/vendor/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('adminn/assets/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
+    
+    <!-- date picker -->
+    <link rel="stylesheet" href="{{ asset('adminn/assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css')}}">
+    <script src="{{ asset('adminn/assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
+    
 </head>
 
 <body>
@@ -45,17 +58,13 @@
     <!-- Main content -->
     <!-- Argon Scripts -->
     <!-- Core -->
-    <script src="{{asset('adminn/assets/vendor/jquery/dist/jquery.min.js')}}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script> -->
     <script src="{{asset('adminn/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
     <!-- Optional JS -->
     <script src="{{asset('adminn/assets/vendor/chart.js/dist/Chart.min.js')}}"></script>
     <script src="{{asset('adminn/assets/vendor/chart.js/dist/Chart.extension.js')}}"></script>
     <!-- Argon JS -->
     <script src="{{asset('adminn/assets/js/argon.js?v=1.0.0')}}"></script>
-    <!-- file input -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.5/js/fileinput.min.js" integrity="sha512-1FvXwt9wkKd29ilILHy0zei6ScE5vdEKqZ6BSW+gmM7mfqC4T4256OmUfFzl1FkaNS3FUQ/Kdzrrs8SD83bCZA==" crossorigin="anonymous"></script>
+    <script src="{{asset('adminn/dist/image-uploader.min.js')}}"></script>
 </body>
-
 </html>

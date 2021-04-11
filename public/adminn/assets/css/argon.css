@@ -3002,13 +3002,14 @@ fieldset:disabled a.btn
 {
     color: #fff;
     border-color: #3d5a80; 
-    background-color: #324cdd;
+    background-color: #3d5a80;
 }
 .btn-primary:not(:disabled):not(.disabled):active:focus,
 .btn-primary:not(:disabled):not(.disabled).active:focus,
 .show > .btn-primary.dropdown-toggle:focus
 {
     box-shadow: none, 0 0 0 0 rgba(94, 114, 228, .5);
+    
 }
 
 .btn-secondary
@@ -3970,6 +3971,8 @@ fieldset:disabled a.btn
     padding: .25rem .5rem;
 
     border-radius: .375rem;
+
+    margin: 5px;
 }
 
 .btn-block
@@ -6209,7 +6212,7 @@ input[type='button'].btn-block
     text-decoration: none;
 
     color: #fff;
-    background-color: #324cdd;
+    background-color: #3d5a80;
 }
 
 .badge-secondary
@@ -6438,7 +6441,7 @@ input[type='button'].btn-block
 }
 .alert-primary .alert-link
 {
-    color: #324cdd;
+    color: #3d5a80;
 }
 
 .alert-secondary
@@ -7935,7 +7938,7 @@ a.bg-primary:focus,
 button.bg-primary:hover,
 button.bg-primary:focus
 {
-    background-color: #324cdd !important;
+    background-color: #3d5a80 !important;
 }
 
 .bg-secondary
@@ -14567,7 +14570,7 @@ button.bg-darker:focus
 a.text-primary:hover,
 a.text-primary:focus
 {
-    color: #324cdd !important;
+    color: #3d5a80 !important;
 }
 
 .text-secondary
@@ -14859,7 +14862,7 @@ a.bg-blue:focus,
 button.bg-blue:hover,
 button.bg-blue:focus
 {
-    background-color: #324cdd !important;
+    background-color: #3d5a80 !important;
 }
 
 .bg-indigo
@@ -16403,7 +16406,7 @@ button.section-darker:focus
 a.text-blue:hover,
 a.text-blue:focus
 {
-    color: #324cdd !important;
+    color: #3d5a80 !important;
 }
 
 .text-indigo
@@ -19003,7 +19006,7 @@ textarea[resize='horizontal']
 }
 .navbar-horizontal .navbar-brand img
 {
-    height: 30px;
+    height: 60px;
 }
 
 .navbar-horizontal .navbar-dark .navbar-brand
@@ -19581,7 +19584,8 @@ textarea[resize='horizontal']
         left: 0;
 
         border-bottom: 0; 
-        border-left: 2px solid #3d5a80;
+        border-left: 6px solid #3d5a80;
+        border-radius: 2px;
     }
     .navbar-vertical.navbar-expand-md .navbar-nav .nav .nav-link
     {
@@ -21231,7 +21235,7 @@ article h5 + figure
 .datepicker table tr td.range.day.disabled:hover
 {
     color: #8a98eb; 
-    background: #324cdd;
+    background: #3d5a80;
 }
 .datepicker table tr td.range.highlighted.focused
 {
@@ -21866,4 +21870,16 @@ html:not([dir='rtl']) .noUi-horizontal .noUi-handle
     bottom: 0; 
 
     height: 3px;
+}
+
+.color-td h4{
+    color: #000;
+}
+
+.pointer{
+    cursor: pointer!important;
+}
+
+.padd {
+    padding: 30px;
 }
