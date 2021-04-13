@@ -35,7 +35,7 @@
                         <span>My profile</span>
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a href="/logout" class="dropdown-item">
+                    <a href="/logout" class="dropdown-item" onclick="return confirm('Apakah anda yakin akan logout ?')">
                         <i class="ni ni-user-run"></i>
                         <span>Logout</span>
                     </a>

@@ -80,7 +80,11 @@
                         <div class="input-field mt-1">
                             <div class="input-images-1" style="padding-top: .5rem;"></div>
                         </div>
-                        <div class="validate"></div>
+                        @error('images')
+                        <div class="text-muted font-italic">
+                            <small><span class="text-danger font-weight-700">{{ $message }}</span></small>
+                        </div>
+                        @enderror
                     </div>
                     <div class="text-center" >
                         <button type="submit">Kirim Pengaduan</button>

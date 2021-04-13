@@ -33,7 +33,7 @@ Pengaduan | Pengaduan Masyarakat
             <table class="table align-items-center table-flush data-table" id="tablePengaduan">
                 <thead class="thead-light">
                     <tr>
-                        <!-- <th scope="col">No</th> -->
+                        <th scope="col">No</th>
                         <th scope="col">NIK</th>
                         <th scope="col">Judul Pengaduan</th>
                         <th scope="col">Tanggal Pengaduan</th>
@@ -70,26 +70,26 @@ Pengaduan | Pengaduan Masyarakat
                 $(row).attr('data-href', `/admin/pengaduan/user/${data.id_pengaduan}`);
             },
             columns: [
-                // {data: null, name: 'index'},
+                {data: null, defaultValue:'', name: 'index'},
                 {data: 'nik', name: 'nik'},
                 {data: 'judul_laporan', name: 'judul_laporan'},
                 {data: 'tgl_pengaduan', name: 'tgl_pengaduan'},
                 {data: 'status', name: 'status'},
                 // {data: 'action', name: 'aksi', orderable: false, searchable: false},
             ],
-            // "columnDefs": [ {
-            //     "searchable": false,
-            //     "orderable": false,
-            //     "targets": 0
-            // } ],
-            // "order": []
+            "columnDefs": [ {
+                "searchable": false,
+                "orderable": false,
+                "targets": 0
+            } ],
+            "order": []
         });
 
-        // table.on( 'order.dt search.dt', function () {
-        //     table.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
-        //         cell.innerHTML = i+1;
-        //     } );
-        // } ).draw();
+        table.on( 'order.dt search.dt', function () {
+            table.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+                cell.innerHTML = i+1;
+            } );
+        } ).draw();
 
         let intervalId = window.setInterval(function () {
                 table.rows().invalidate().draw();

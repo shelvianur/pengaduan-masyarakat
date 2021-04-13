@@ -20,7 +20,7 @@ Laporan Admin | Pengaduan Masyarakat
                         <option value="selesai">Laporan Selesai</option>
                     </select>
                 </div>
-                <input type="submit" value="Cetak PDF" class="btn btn-sm btn-primary">
+                <input type="submit" value="Cetak PDF" formtarget="_blank" class="btn btn-sm btn-primary">
             </form>
         </div>
     </div>

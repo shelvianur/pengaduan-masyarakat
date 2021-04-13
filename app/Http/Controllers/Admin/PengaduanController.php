@@ -18,6 +18,7 @@ class PengaduanController extends Controller
         if ($request->ajax()) {
             $data = Pengaduan::join('masyarakat_shelvia', 'masyarakat_shelvia.id_masyarakat', 'pengaduan_shelvia.masyarakat_id')
                             ->select('pengaduan_shelvia.*', 'masyarakat_shelvia.nama', 'masyarakat_shelvia.nik')
+                            ->orderBy('pengaduan_shelvia.tgl_pengaduan', 'DESC')
                             ->get();
             return DataTables::of($data)
                     ->addIndexColumn()
@@ -33,13 +34,15 @@ class PengaduanController extends Controller
 
                         return $status;
                     })
+                    ->editColumn('tgl_pengaduan', function ($row)
+                    {
+                        return date_format($row->tgl_pengaduan, 'l, d F Y - H:i:s');
+                    })
                     ->rawColumns(['status'])
                     ->make(true);
         }
 
-        $pengaduan = Pengaduan::all();
-
-        return view('admin.pengaduan.index', ['pengaduan' => $pengaduan]);
+        return view('admin.pengaduan.index');
     }
 
     public function user($id)

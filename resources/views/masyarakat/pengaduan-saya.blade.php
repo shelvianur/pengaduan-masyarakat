@@ -22,6 +22,7 @@
                         </div>
                         @endforeach
                     </div>
+                <p class="description">{{$p->tgl_pengaduan}}</p>
                 <h4 class="title"><a href="{{route('user.pengaduan.id', [$p->id_pengaduan])}}">{{$p->judul_laporan}}</a></h4>
                 <p class="description">{{$p->isi_laporan}}</p>
                 </div>

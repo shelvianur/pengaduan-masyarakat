@@ -5,14 +5,35 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Masyarakat;
+use DataTables;
 
 class MasyarakatController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $masyarakat = Masyarakat::all();
-        $no = 1;
-        return view('admin.masyarakat.index', ['masyarakat' => $masyarakat, 'no' => $no]);
+        if ($request->ajax()) {
+            $data = Masyarakat::all();
+            return DataTables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('action', function($row) {
+                        $btn = '<div class="dropdown">
+                                <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                    <a class="dropdown-item" href="/admin/masyarakat/edit/'.$row->id_masyarakat.'">Edit</a>
+                                    <a class="dropdown-item" href="/admin/masyarakat/delete/'.$row->id_masyarakat.'">Hapus</a>
+                                </div>
+                            </div>';
+                        
+                        return $btn;
+
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
+        }
+
+        return view('admin.masyarakat.index');
     }
 
     public function createadmin(Request $request)
@@ -36,14 +57,14 @@ class MasyarakatController extends Controller
 
     public function store(Request $request)
     {
-        // $masyarakat = new Masyarakat;
-        // $masyarakat->nik = $request->nik;
-        // $masyarakat->nama = $request->nama;
-        // $masyarakat->username = $request->username;
-        // $masyarakat->password = $request->password;
-        // $masyarakat->telp = $request->telp;
-        // $masyarakat->email = $request->email;
-        // $masyarakat->save();
+        $this->validate($request, [
+            'nik' => 'required|min:16|max:16',
+            'nama' => 'required|min:5|max:50',
+            'username' => 'required|unique:masyarakat_shelvia,username',
+            'password' => 'required|min:5|max:16|confirmed',
+            'telp' => 'required|min:11|max:13',
+            'email' => 'required|unique:masyarakat_shelvia,email',
+        ]);
 
         Masyarakat::create([
             'nik' => $request->nik,

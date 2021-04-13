@@ -10,12 +10,11 @@ Masyarakat Admin | Pengaduan Masyarakat
 
 
 <div class="col">
-    <div class="card shadow">
+    <div class="card shadow padd">
         <div class="table-responsive">
-            <div class="card-header border-0">
+            <!-- <div class="card-header border-0">
                 <div class="row align-items-center">
                     <div class="col"><h3 class="mb-0">Data Masyarakat</h3></div>
-                    <!-- modal -->
                     <div class="col text-right"><a href="#!" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-form">Tambah</a></div>
                 </div>
                 <div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
@@ -75,9 +74,9 @@ Masyarakat Admin | Pengaduan Masyarakat
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!-- table -->
-            <table class="table align-items-center table-flush">
+            <table class="table align-items-center table-flush data-table">
                 <thead class="thead-light">
                     <tr>
                         <th scope="col">No</th>
@@ -88,34 +87,6 @@ Masyarakat Admin | Pengaduan Masyarakat
                         <th scope="col"></th>
                     </tr>
                 </thead>
-                <tbody>
-                    @foreach ($masyarakat as $m)
-                    <tr>
-                        <th scope="row">
-                            <div class="media align-items-center">
-                                <div class="media-body">
-                                    <span class="mb-0 text-sm">{{$no++}}</span>
-                                </div>
-                            </div>
-                        </th>
-                        <td>{{$m->nik}}</td>
-                        <td>{{$m->username}}</td>
-                        <td>{{$m->email}}</td>
-                        <td>{{$m->telp}}</td>
-                        <td class="text-right">
-                            <div class="dropdown">
-                                <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                    <a class="dropdown-item" href="/admin/masyarakat/edit/{{$m->id_masyarakat}}">Edit</a>
-                                    <a class="dropdown-item" href="/admin/masyarakat/delete/{{$m->id_masyarakat}}" onclick="return confirm('Apakah adan yakin akan menghapus {{$m->username}} dari data masyarakat ?')">Hapus</a>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
             </table>
         </div>
     </div>
@@ -145,4 +116,45 @@ Masyarakat Admin | Pengaduan Masyarakat
         </nav>
     </div> -->
 </div>
+
+<script>
+    $(function () {
+        var table = $('.data-table').DataTable({
+            processing: false,
+            serverSide: true,
+            ajax: "{{ route('admin.masyarakat.index') }}",
+            language: {
+                paginate: {
+                    next: '<i class="fas fa-chevron-right"></i>',
+                    previous: '<i class="fas fa-chevron-left"></i>'  
+                }
+            },
+            columns: [
+                {data: null, defaultValue:'', name: 'index'},
+                {data: 'nik', name: 'nik'},
+                {data: 'username', name: 'username'},
+                {data: 'email', name: 'email'},
+                {data: 'telp', name: 'telp'},
+                {data: 'action', name: 'aksi', orderable: false, searchable: false},
+            ],
+            "columnDefs": [ {
+                "searchable": false,
+                "orderable": false,
+                "targets": 0
+            } ],
+            "order": []
+        });
+
+        table.on( 'order.dt search.dt', function () {
+            table.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+                cell.innerHTML = i+1;
+            } );
+        } ).draw();
+
+        let intervalId = window.setInterval(function () {
+                table.rows().invalidate().draw();
+            }, 2000);
+    });
+    
+</script>
 @endsection

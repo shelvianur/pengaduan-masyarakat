@@ -30,14 +30,14 @@ Laporan Admin | Pengaduan Masyarakat
                             <form action="{{route('admin.laporan.hari')}}" method="post">
                                 @csrf
                                 <div class="form-group">
-                                    <label class="form-control-label" for="">Tanggal :</label>
+                                    <label class="form-control-label" for="hari">Tanggal :</label>
                                     <div class="input-group">
-                                        <input type="date" class="form-control" aria-describedby="basic-addon2" name="hari" required>
+                                        <input type="date" class="form-control" aria-describedby="basic-addon2" name="hari" id="hari" required>
                                         <div class="input-group-append">
                                             <span class="input-group-text" id="basic-addon2"></span>
                                         </div>
                                     </div>
-                                    <input type="submit" value="Cetak PDF" class="btn btn-sm btn-primary">
+                                    <input type="submit" value="Cetak PDF" formtarget="_blank" class="btn btn-sm btn-primary">
                                 </div>
                             </form>
                         </div>
@@ -54,7 +54,7 @@ Laporan Admin | Pengaduan Masyarakat
                                         <input type="text" name="to_date" id="to_date" readonly class="form-control" placeholder="Masukkan tanggal Akhir" required />
                                     </div>
                                 </div>
-                                <input type="submit" value="Cetak PDF" class="btn btn-sm btn-primary">
+                                <input type="submit" value="Cetak PDF" formtarget="_blank" class="btn btn-sm btn-primary">
                             </form>
                         </div>
                         <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel" aria-labelledby="tabs-icons-text-3-tab">
@@ -62,7 +62,7 @@ Laporan Admin | Pengaduan Masyarakat
                                 @csrf
                                 <label class="form-control-label" for="bulan">Bulan :</label>
                                 <input type="month" name="bulan" id="bulan" class="form-control" >
-                                <input type="submit" value="Cetak PDF" class="btn btn-sm btn-primary">
+                                <input type="submit" value="Cetak PDF" formtarget="_blank" class="btn btn-sm btn-primary">
                             </form>
                         </div>
                     </div>

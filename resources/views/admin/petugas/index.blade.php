@@ -35,16 +35,31 @@ Petugas Admin | Pengaduan petugas
                                                     <div class="input-group input-group-merge input-group-alternative">
                                                         <input class="form-control" name="nama_petugas" placeholder="Masukkan Nama" type="text" required>
                                                     </div>
+                                                    @error('nama_petugas')
+                                                    <div class="text-muted font-italic">
+                                                        <small><span class="text-danger font-weight-700">{{ $message }}</span></small>
+                                                    </div>
+                                                    @enderror
                                                 </div>
                                                 <div class="form-group mb-3">
                                                     <div class="input-group input-group-merge input-group-alternative">
                                                         <input class="form-control" name="telp" placeholder="Masukkan Nomor Telepon" type="number" required>
                                                     </div>
+                                                    @error('telp')
+                                                    <div class="text-muted font-italic">
+                                                        <small><span class="text-danger font-weight-700">{{ $message }}</span></small>
+                                                    </div>
+                                                    @enderror
                                                 </div>
                                                 <div class="form-group mb-3">
                                                     <div class="input-group input-group-merge input-group-alternative">
                                                         <input class="form-control" name="username" placeholder="Masukkan Nama Pengguna" type="text" required>
                                                     </div>
+                                                    @error('telp')
+                                                    <div class="text-muted font-italic">
+                                                        <small><span class="text-danger font-weight-700">{{ $message }}</span></small>
+                                                    </div>
+                                                    @enderror
                                                 </div>
                                                 <div class="form-group mb-3">
                                                     <div class="input-group input-group-merge input-group-alternative">
@@ -53,15 +68,20 @@ Petugas Admin | Pengaduan petugas
                                                         </div>
                                                         <input class="form-control" name="email" placeholder="Masukkan Email" type="email" required>
                                                     </div>
+                                                    @error('telp')
+                                                    <div class="text-muted font-italic">
+                                                        <small><span class="text-danger font-weight-700">{{ $message }}</span></small>
+                                                    </div>
+                                                    @enderror
                                                 </div>
-                                                <div class="form-group">
+                                                <!-- <div class="form-group">
                                                     <div class="input-group input-group-merge input-group-alternative">
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                                                         </div>
                                                         <input class="form-control" name="password" placeholder="Masukkan Password" type="password" required>
                                                     </div>
-                                                </div>
+                                                </div> -->
                                                 <div class="text-center">
                                                     <button type="submit" class="btn btn-primary my-4" name="simpan">Simpan</button>
                                                 </div>
@@ -122,7 +142,7 @@ Petugas Admin | Pengaduan petugas
     </div>
     <div class="card-footer py-4">
         <nav aria-label="...">
-            <ul class="pagination justify-content-end mb-0">
+            <!-- <ul class="pagination justify-content-end mb-0">
                 <li class="page-item disabled">
                     <a class="page-link" href="#" tabindex="-1">
                         <i class="fas fa-angle-left"></i>
@@ -142,7 +162,7 @@ Petugas Admin | Pengaduan petugas
                         <span class="sr-only">Next</span>
                     </a>
                 </li>
-            </ul>
+            </ul> -->
         </nav>
     </div>
 </div>

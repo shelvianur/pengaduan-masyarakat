@@ -27,10 +27,17 @@ class PetugassController extends Controller
      */
     public function create(Request $request)
     {
+        $this->validate($request, [
+            'nama_petugas' => 'required|min:5|max:50',
+            'email' => 'required|unique:petugas_shelvia.email',
+            'telp' => 'required|min:11|max:13',
+            'username' => 'required|unique:petugas_shelvia.username',
+        ]);
+
         Petugas::create([
             'nama_petugas' => $request->nama_petugas,
             'username' => $request->username,
-            'password' => bcrypt('thisyourpassword'),
+            'password' => bcrypt('petugas'),
             'telp' => $request->telp,
             'email' => $request->email,
             'level' => 'petugas'

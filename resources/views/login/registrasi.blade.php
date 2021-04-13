@@ -97,6 +97,11 @@
                                     </div>
                                     <input class="form-control" placeholder="Nik" type="number" name="nik" required>
                                 </div>
+                                @error('nik')
+                                  <div class="text-muted font-italic">
+                                    <small><span class="text-danger font-weight-700">{{ $message }}</span></small>
+                                  </div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <div class="input-group input-group-alternative mb-3">
@@ -105,6 +110,11 @@
                                     </div>
                                     <input class="form-control" placeholder="Username" type="text" name="username" required>
                                 </div>
+                                @error('username')
+                                  <div class="text-muted font-italic">
+                                    <small><span class="text-danger font-weight-700">{{ $message }}</span></small>
+                                  </div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <div class="input-group input-group-alternative mb-3">
@@ -121,6 +131,11 @@
                                     </div>
                                     <input class="form-control" placeholder="Email" type="email" name="email" required>
                                 </div>
+                                @error('email')
+                                  <div class="text-muted font-italic">
+                                    <small><span class="text-danger font-weight-700">{{ $message }}</span></small>
+                                  </div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <div class="input-group input-group-alternative">
@@ -128,6 +143,19 @@
                                         <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                                     </div>
                                     <input class="form-control" placeholder="Password" type="password" name="password" required>
+                                  </div>
+                                  @error('password')
+                                    <div class="text-muted font-italic">
+                                      <small><span class="text-danger font-weight-700">{{ $message }}</span></small>
+                                    </div>
+                                  @enderror
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group input-group-alternative">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                                    </div>
+                                    <input class="form-control" placeholder="Confirm Password" type="password" name="confirm_password" required>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -137,17 +165,11 @@
                                     </div>
                                     <input class="form-control" placeholder="Nomor Telepon" type="number" name="telp">
                                 </div>
-                            </div>
-                            <div class="text-muted font-italic"><small>password strength: <span class="text-success font-weight-700">strong</span></small></div>
-                            <div class="row my-4">
-                                <div class="col-12">
-                                    <div class="custom-control custom-control-alternative custom-checkbox">
-                                        <input class="custom-control-input" id="customCheckRegister" type="checkbox">
-                                        <label class="custom-control-label" for="customCheckRegister">
-                                            <span class="text-muted">I agree with the <a href="#!">Privacy Policy</a></span>
-                                        </label>
-                                    </div>
-                                </div>
+                                @error('telp')
+                                  <div class="text-muted font-italic">
+                                    <small><span class="text-danger font-weight-700">{{ $message }}</span></small>
+                                  </div>
+                                @enderror
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary mt-4">Create account</button>
