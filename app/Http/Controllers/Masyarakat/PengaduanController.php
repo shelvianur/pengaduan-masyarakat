@@ -17,7 +17,7 @@ class PengaduanController extends Controller
         $pengaduan = Pengaduan::with('foto')
                                 ->where('masyarakat_id', Auth::user()->id_masyarakat)
                                 ->orderBy('tgl_pengaduan', 'DESC')
-                                ->get();
+                                ->paginate(4);
         
         return view('masyarakat.pengaduan-saya', compact('pengaduan'));
     }

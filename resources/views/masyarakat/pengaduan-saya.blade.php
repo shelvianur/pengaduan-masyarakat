@@ -22,7 +22,7 @@
                         </div>
                         @endforeach
                     </div>
-                <p class="description">{{$p->tgl_pengaduan}}</p>
+                <p class="description">{{$p->tgl_pengaduan->format('l, d F Y - H:i:s')}}</p>
                 <h4 class="title"><a href="{{route('user.pengaduan.id', [$p->id_pengaduan])}}">{{$p->judul_laporan}}</a></h4>
                 <p class="description">{{$p->isi_laporan}}</p>
                 </div>
@@ -36,6 +36,9 @@
         </div>
       </div>
     </section>
+    <div class="d-flex justify-content-center">
+        {!! $pengaduan->links() !!}
+    </div>
 
 <script>
   $(document).ready(function() {
@@ -50,7 +53,7 @@
           items: 1
         },
         600: {
-          items: 1
+          items: 2
         },
         1000: {
           items: 1

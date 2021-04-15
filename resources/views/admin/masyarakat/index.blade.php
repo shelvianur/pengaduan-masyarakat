@@ -151,9 +151,12 @@ Masyarakat Admin | Pengaduan Masyarakat
             } );
         } ).draw();
 
+        let petugas = <?= Auth::guard('petugas')->check() ?>;
         let intervalId = window.setInterval(function () {
+            if (petugas == 1) {
                 table.rows().invalidate().draw();
-            }, 2000);
+            }
+        }, 2000);
     });
     
 </script>

@@ -18,4 +18,8 @@ class Tanggapan extends Model
         'tgl_tanggapan',
         'tanggapan'
     ];
+
+    public function pengaduan(){
+    	return $this->belongsTo('App\Models\Pengaduan');
+    }
 }

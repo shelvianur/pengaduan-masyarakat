@@ -30,7 +30,7 @@ Pengaduan | Pengaduan Masyarakat
                     <option value="selesai">Selesai</option>
                 </select>
             </div> -->
-            <table class="table align-items-center table-flush data-table" id="tablePengaduan">
+            <table class="table align-items-center table-hover table-flush data-table" id="tablePengaduan">
                 <thead class="thead-light">
                     <tr>
                         <th scope="col">No</th>
@@ -91,25 +91,12 @@ Pengaduan | Pengaduan Masyarakat
             } );
         } ).draw();
 
+        let petugas = <?= Auth::guard('petugas')->check() ?>;
         let intervalId = window.setInterval(function () {
+            if (petugas == 1) {
                 table.rows().invalidate().draw();
-            }, 2000);
-    
-            function filter(value) {
-                $.ajax({
-                    type : 'GET',
-                    url : '{{ route('admin.pengaduan.index') }}', 
-                    data : {value}, 
-                    dataType : 'json'
-                })
-                .done(function(res){
-                    table.rows().invalidate().draw();
-                })
             }
-        
-            $('#filter').change(function(){
-                table.draw();
-            });
+        }, 2000);
     });
     
 </script>

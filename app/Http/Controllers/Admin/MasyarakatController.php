@@ -22,7 +22,7 @@ class MasyarakatController extends Controller
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                     <a class="dropdown-item" href="/admin/masyarakat/edit/'.$row->id_masyarakat.'">Edit</a>
-                                    <a class="dropdown-item" href="/admin/masyarakat/delete/'.$row->id_masyarakat.'">Hapus</a>
+                                    <a class="dropdown-item" href="/admin/masyarakat/delete/'.$row->id_masyarakat.'" id="btnDelete">Hapus</a>
                                 </div>
                             </div>';
                         

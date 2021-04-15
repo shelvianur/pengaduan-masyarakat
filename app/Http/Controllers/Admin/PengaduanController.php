@@ -139,8 +139,8 @@ class PengaduanController extends Controller
         $pengaduan = Pengaduan::join('masyarakat_shelvia', 'masyarakat_shelvia.id_masyarakat', 'pengaduan_shelvia.masyarakat_id')
                                 ->select('pengaduan_shelvia.*', 'masyarakat_shelvia.*')
                                 ->find($id);
-
-        $pdf = PDF::loadview('admin.pengaduan.cetak', compact('pengaduan'))->setPaper('a4');
+        $image = Foto::where('pengaduan_id', $id)->get();
+        $pdf = PDF::loadview('admin.pengaduan.cetak', compact('pengaduan', 'image'))->setPaper('a4');
         return $pdf->stream();
     }
 }

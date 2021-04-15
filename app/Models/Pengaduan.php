@@ -23,4 +23,8 @@ class Pengaduan extends Model
     public function foto(){
     	return $this->hasMany('App\Models\Foto', 'pengaduan_id', 'id_pengaduan');
     }
+
+    public function tanggapan(){
+    	return $this->hasMany('App\Models\Tanggapan', 'pengaduan_id', 'id_pengaduan');
+    }
 }

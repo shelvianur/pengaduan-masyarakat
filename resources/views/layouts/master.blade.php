@@ -66,5 +66,11 @@
     <!-- Argon JS -->
     <script src="{{asset('adminn/assets/js/argon.js?v=1.0.0')}}"></script>
     <script src="{{asset('adminn/dist/image-uploader.min.js')}}"></script>
+
+    <script>
+        $(document).on('click', '#btnDelete', function () {
+            return confirm('Anda yakin akan menghapus data ini?')
+        });
+    </script>
 </body>
 </html>
