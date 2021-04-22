@@ -4,11 +4,7 @@ Pengaduan | Pengaduan Masyarakat
 @endsection
 
 @section('content2')
-<!-- <button class="btn btn-icon btn-primary" type="button">
-	<span class="btn-inner--icon"><i class="ni ni-atom"></i></span>
-</button> -->
 <div class="col">
-    <!-- table -->
     <div class="card shadow padd">
         <div class="table-responsive">
             <div class="">
