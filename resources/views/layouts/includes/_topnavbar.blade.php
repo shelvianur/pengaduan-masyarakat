@@ -21,20 +21,22 @@
             <li class="nav-item dropdown">
                 <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="media align-items-center">
-                        <span class="avatar avatar-sm rounded-circle">
+                        <!-- <span class="avatar avatar-sm rounded-circle">
                             <img alt="Image placeholder" src="{{asset('adminn/assets/img/theme/team-4-800x800.jpg')}}">
-                        </span>
+                        </span> -->
+                        <h5 class="h5 mb-0 text-white d-none d-lg-inline-block" style="padding: 10px">{{Auth::user()->nama_petugas}}</h5>
+                        <i class="fas fa-chevron-down"></i>
                         <div class="media-body ml-2 d-none d-lg-block">
                             
                         </div>
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
-                    <a href="{{asset('adminn/examples/profile.html')}}" class="dropdown-item">
+                    <!-- <a href="{{asset('adminn/examples/profile.html')}}" class="dropdown-item">
                         <i class="ni ni-single-02"></i>
                         <span>My profile</span>
-                    </a>
-                    <div class="dropdown-divider"></div>
+                    </a> -->
+                    <!-- <div class="dropdown-divider"></div> -->
                     <a href="/logout" class="dropdown-item" onclick="return confirm('Apakah anda yakin akan logout ?')">
                         <i class="ni ni-user-run"></i>
                         <span>Logout</span>
